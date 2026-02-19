@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="courses-page">
+
+    <!-- HEADER -->
+    <div class="courses-header">
+        <h2>Explore Courses by Career Path</h2>
+
+        <a href="#" class="courses-consult-btn">
+            Free Consultation
+        </a>
+    </div>
+
+    <!-- CATEGORY FILTER -->
+    <div class="courses-filter">
+
+    <a href="{% url 'courses' %}">
+        <button class="{% if not selected_category %}active{% endif %}">
+            All
+        </button>
+    </a>
+
+    {% for category in categories %}
+        <a href="{% url 'courses' %}?category={{ category.id }}">
+            <button class="{% if selected_category == category.id|stringformat:'s' %}active{% endif %}">
+                {{ category.name }}
+            </button>
+        </a>
+    {% endfor %}
+
+</div>
+
+
+    <!-- COURSE GRID -->
+    <div class="courses-grid">
+
+        {% for course in courses %}
+        <div class="courses-card">
+
+            <img src="{{ course.image.url }}" class="courses-img">
+
+            <div class="courses-body">
+                <h3 class="course-title">{{ course.title }}</h3>
+
+               <div class="courses-meta">
+    <img src="{% static 'images/homefeatureicon1.png' %}" class="courses-meta-icon">
+    <span>{{ course.duration }}</span>
+</div>
+
+<div class="courses-meta">
+    <img src="{% static 'images/homefeatureicon2.png' %}" class="courses-meta-icon">
+    <span>{{ course.level }}</span>
+</div>
+
+
+                <p class="courses-desc">
+                    {{ course.description }}
+                </p>
+
+                <div class="courses-actions">
+                   <a href="{% url 'course_detail' course.id %}" class="courses-details-btn">
+    View Details
+</a>
+
+
+                    <button class="courses-enroll-btn">
+                        Enroll Now
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

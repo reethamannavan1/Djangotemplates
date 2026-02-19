@@ -1,0 +1,594 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="course-detail">
+
+    <div class="detail-container">
+
+        <!-- LEFT SIDE -->
+        <div class="detail-left">
+
+            <h1 class="course-detail-title">{{ course.detail_title }}</h1>
+
+            <p class="course-detail-desc">{{ course.detail_description }}</p>
+
+            <!-- INFO CARDS -->
+            <div class="info-row">
+
+    <div class="info-box">
+        <img src="{% static 'images/fee.svg' %}" class="info-icon">
+        <div>
+            <small>Course Fee</small>
+            <strong class="fee-text">₹ {{ course.fee }}</strong>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <img src="{% static 'images/duration.svg' %}" class="info-icon">
+        <div>
+            <small>Duration</small>
+            <strong>{{ course.duration }}</strong>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <img src="{% static 'images/certificate.svg' %}" class="info-icon">
+        <div>
+            <small>Certification</small>
+            <strong>{{ course.certification }}</strong>
+        </div>
+    </div>
+
+    <div class="info-box">
+    <img src="{% static 'images/mode.svg' %}" class="info-icon">
+    <div>
+        <small>Mode</small>
+        <strong>Online / Offline</strong>
+    </div>
+</div>
+
+
+</div>
+
+
+            <!-- BUTTONS -->
+            <div class="detail-buttons">
+                <button class="enroll-main" onclick="openModal()">Enroll Now</button>
+
+                <button class="brochure-btn">Download Brochure</button>
+            </div>
+            <hr class="section-divider">
+
+            <!-- COURSE OVERVIEW -->
+            <h3 class="section-title">Course Overview</h3>
+            <p class="overview-text">
+                {{ course.overview }}
+            </p>
+
+            <!-- TECHNOLOGIES -->
+            <h3 class="section-title">Tools & Technologies Covered</h3>
+
+            <div class="tech-grid">
+                {% for tech in technologies %}
+              <div class="tech-card">
+    <img src="{{ tech.icon.url }}" class="tech-icon">
+    <p class="tech-name">{{ tech.name }}</p>
+</div>
+
+                {% endfor %}
+            </div>
+
+            <!-- LEARNING -->
+            <h3 class="section-title">What You’ll Learn</h3>
+
+          <ul class="learning-list">
+    {% for item in learning_points %}
+        <li>{{ item.point }}</li>
+    {% endfor %}
+</ul>
+
+
+        </div>
+
+        <!-- RIGHT SIDE MEDIA -->
+      <div class="detail-right">
+
+    <div class="video-preview">
+
+        {% if course.preview_video %}
+            <video controls class="detail-media">
+                <source src="{{ course.preview_video.url }}">
+            </video>
+
+        {% elif course.preview_image %}
+            <img src="{{ course.preview_image.url }}" class="detail-media">
+
+            <!-- fake play button -->
+            <div class="play-overlay">▶</div>
+
+            <!-- fake progress bar -->
+            <div class="video-progress"></div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+    </div>
+
+</section>
+
+
+
+
+<div id="enrollModal" class="modal-overlay">
+
+    <div class="modal-box">
+
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+
+        <h2>Enter Details</h2>
+
+        <!-- Progress -->
+       <!-- Progress -->
+<div class="progress-bar">
+    <div class="step active" id="step-enter">Enter Details</div>
+    <div class="step" id="step-confirm">Confirm Details</div>
+    <div class="step" id="step-payment">Payment</div>
+</div>
+
+<div id="step1-form">
+ <form method="post">
+{% csrf_token %}
+
+<div class="form-grid">
+
+    <!-- ROW 1 -->
+    <div class="form-group">
+        <label>First Name <span class="required">*</span></label>
+        <input type="text" name="first_name" value="{{ request.POST.first_name }}">
+        {% if form.first_name.errors %}
+            <small class="error">{{ form.first_name.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" name="last_name" value="{{ request.POST.last_name }}">
+        {% if form.last_name.errors %}
+            <small class="error">{{ form.last_name.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Phone Number <span class="required">*</span></label>
+        <input type="text" name="phone" value="{{ request.POST.phone }}">
+        {% if form.phone.errors %}
+            <small class="error">{{ form.phone.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <!-- ROW 2 -->
+    <div class="form-group">
+        <label>Email Address <span class="required">*</span></label>
+        <input type="email" name="email" value="{{ request.POST.email }}">
+        {% if form.email.errors %}
+            <small class="error">{{ form.email.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Gender <span class="required">*</span></label>
+        <select name="gender">
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        {% if form.gender.errors %}
+            <small class="error">{{ form.gender.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Date of Birth <span class="required">*</span></label>
+        <input type="date" name="dob" value="{{ request.POST.dob }}">
+        {% if form.dob.errors %}
+            <small class="error">{{ form.dob.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <!-- ROW 3 -->
+    <div class="form-group">
+        <label>Address <span class="required">*</span></label>
+        <input type="text" name="address" value="{{ request.POST.address }}">
+        {% if form.address.errors %}
+            <small class="error">{{ form.address.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>City <span class="required">*</span></label>
+        <input type="text" name="city" value="{{ request.POST.city }}">
+        {% if form.city.errors %}
+            <small class="error">{{ form.city.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>State <span class="required">*</span></label>
+        <input type="text" name="state" value="{{ request.POST.state }}">
+        {% if form.state.errors %}
+            <small class="error">{{ form.state.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <!-- ROW 4 -->
+    <div class="form-group">
+        <label>Pincode <span class="required">*</span></label>
+        <input type="text" name="pincode" value="{{ request.POST.pincode }}">
+        {% if form.pincode.errors %}
+            <small class="error">{{ form.pincode.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Select Course <span class="required">*</span></label>
+        <select name="course">
+            {% for c in courses %}
+            <option value="{{ c.id }}">{{ c.title }}</option>
+            {% endfor %}
+        </select>
+        {% if form.course.errors %}
+            <small class="error">{{ form.course.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>Available Mode <span class="required">*</span></label>
+        <select name="mode">
+            <option value="">Select</option>
+            <option value="online">Online</option>
+            <option value="offline">Offline</option>
+        </select>
+        {% if form.mode.errors %}
+            <small class="error">{{ form.mode.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+    <!-- ROW 5 -->
+    <div class="form-group full-width">
+        <label>Message</label>
+        <textarea name="message">{{ request.POST.message }}</textarea>
+        {% if form.message.errors %}
+            <small class="error">{{ form.message.errors.0 }}</small>
+        {% endif %}
+    </div>
+
+</div>
+
+<button type="button" class="submit-btn" onclick="goToConfirmStep()">Next</button>
+
+
+</form>
+
+</div>
+
+<div id="step2-confirm" style="display:none;">
+
+    <h3 class="confirm-title">Please Confirm Your Details</h3>
+
+    <div class="confirm-card">
+
+        <div class="confirm-grid">
+
+            <div>First Name</div>
+            <div>: <span id="c-first"></span></div>
+
+            <div>Last Name</div>
+            <div>: <span id="c-last"></span></div>
+
+            <div>Phone No</div>
+            <div>: <span id="c-phone"></span></div>
+
+            <div>Email Id</div>
+            <div>: <span id="c-email"></span></div>
+
+            <div>Gender</div>
+            <div>: <span id="c-gender"></span></div>
+
+            <div>Date of Birth</div>
+            <div>: <span id="c-dob"></span></div>
+
+            <div>Address</div>
+            <div>: <span id="c-address"></span></div>
+
+            <div>City</div>
+            <div>: <span id="c-city"></span></div>
+
+            <div>State</div>
+            <div>: <span id="c-state"></span></div>
+
+            <div>Pincode</div>
+            <div>: <span id="c-pincode"></span></div>
+
+            <div>Course Name</div>
+            <div>: <span id="c-course"></span></div>
+
+            <div>Mode</div>
+            <div>: <span id="c-mode"></span></div>
+
+        </div>
+
+    </div>
+
+    <div class="confirm-buttons">
+        <button class="back-btn" onclick="backToEdit()">Back to Edit</button>
+        <button type="button" class="confirm-btn" onclick="goToPaymentStep()">Confirm</button>
+
+    </div>
+
+</div>
+
+
+<div id="step3-payment" style="display:none;">
+
+    <h3 class="payment-title">Choose Your Payment Option</h3>
+
+    <div class="payment-container">
+
+        <!-- LEFT SUMMARY -->
+    <div class="payment-summary">
+
+    <div class="amount-row">
+        <span>Course Amount</span>
+        <span>₹ {{ fee }}</span>
+    </div>
+
+    <div class="amount-row">
+        <span>GST (18%)</span>
+        <span>₹ {{ gst }}</span>
+    </div>
+
+    <hr>
+
+    <div class="amount-row total">
+        <span>Total</span>
+        <span>₹ {{ total }}</span>
+    </div>
+
+</div>
+
+
+
+        <!-- PAYMENT OPTIONS -->
+        <div class="payment-options">
+
+            <label class="pay-card">
+                <input type="radio" name="payment_method">
+                <img src="{% static 'images/gpay.png' %}">
+                <span>UPI</span>
+            </label>
+
+            <label class="pay-card">
+                <input type="radio" name="payment_method">
+                <img src="{% static 'images/netbank.jpg' %}">
+                <span>Net Banking</span>
+            </label>
+
+            <label class="pay-card">
+                <input type="radio" name="payment_method">
+                <img src="{% static 'images/visa.png' %}">
+                <span>Card</span>
+            </label>
+
+           <button type="button" class="pay-btn" onclick="goToSuccessStep()">Pay Now</button>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div id="step4-success" style="display:none;">
+
+    <h3 class="success-title">Transaction Details</h3>
+
+    <div class="success-card">
+
+        <div class="success-grid">
+
+            <div>Transaction Id</div>
+            <div>: GDHS200001</div>
+
+            <div>Date</div>
+            <div>: {{ now|date:"d/m/Y" }}</div>
+
+            <div>Payment Method</div>
+            <div>: UPI</div>
+
+            <div>Amount Paid</div>
+            <div>: ₹ {{ total }}</div>
+
+            <div>Email Id</div>
+            <div>: <span id="success-email"></span></div>
+
+        </div>
+
+    </div>
+
+    <div class="success-actions">
+        <button class="invoice-btn">Download Invoice</button>
+    </div>
+
+</div>
+
+
+
+
+    </div>
+
+</div>
+
+
+<script>
+function openModal() {
+    document.getElementById("enrollModal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("enrollModal").style.display = "none";
+}
+</script>
+
+
+
+{% if form.errors %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("enrollModal").style.display = "flex";
+});
+</script>
+{% endif %}
+
+
+
+<script>
+function goToConfirmStep() {
+
+    // copy values from form
+    document.getElementById("c-first").innerText =
+        document.querySelector("[name='first_name']").value;
+
+    document.getElementById("c-phone").innerText =
+        document.querySelector("[name='phone']").value;
+
+    document.getElementById("c-email").innerText =
+        document.querySelector("[name='email']").value;
+
+    document.getElementById("c-course").innerText =
+        document.querySelector("[name='course']").selectedOptions[0].text;
+
+    document.getElementById("c-mode").innerText =
+        document.querySelector("[name='mode']").value;
+
+    document.getElementById("c-last").innerText =
+document.querySelector("[name='last_name']").value;
+
+document.getElementById("c-gender").innerText =
+document.querySelector("[name='gender']").value;
+
+document.getElementById("c-dob").innerText =
+document.querySelector("[name='dob']").value;
+
+document.getElementById("c-address").innerText =
+document.querySelector("[name='address']").value;
+
+document.getElementById("c-city").innerText =
+document.querySelector("[name='city']").value;
+
+document.getElementById("c-state").innerText =
+document.querySelector("[name='state']").value;
+
+document.getElementById("c-pincode").innerText =
+document.querySelector("[name='pincode']").value;
+
+
+    // hide form
+    document.getElementById("step1-form").style.display = "none";
+
+    // show confirm section
+    document.getElementById("step2-confirm").style.display = "block";
+
+    // progress update
+    document.getElementById("step-enter").classList.remove("active");
+    document.getElementById("step-enter").classList.add("done");
+    document.getElementById("step-confirm").classList.add("active");
+}
+
+function backToEdit() {
+    document.getElementById("step1-form").style.display = "block";
+    document.getElementById("step2-confirm").style.display = "none";
+}
+</script>
+
+
+
+
+<script>
+function goToPaymentStep() {
+
+    document.getElementById("step-confirm").classList.remove("active");
+    document.getElementById("step-confirm").classList.add("done");
+
+    document.getElementById("step-payment").classList.add("active");
+
+    document.getElementById("step2-confirm").style.display = "none";
+    document.getElementById("step3-payment").style.display = "block";
+}
+</script>
+
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+function goToSuccessStep() {
+
+    fetch("/courses/create-order/{{ course.id }}/")
+    .then(res => res.json())
+    .then(data => {
+
+        var options = {
+            key: "{{ razorpay_key }}",
+            order_id: data.order_id,
+            name: "Vetri Technology Solutions",
+            description: "{{ course.title }}",
+
+            handler: function (response) {
+
+                document.getElementById("step3-payment").style.display = "none";
+                document.getElementById("step4-success").style.display = "block";
+
+                setTimeout(function () {
+
+                    // EMAIL
+                    const emailField = document.querySelector("[name='email']");
+                    if (emailField) {
+                        document.getElementById("success-email").innerText = emailField.value;
+                    }
+
+                    // DATE
+                    const today = new Date();
+                    const formatted =
+                        today.getDate().toString().padStart(2, '0') + "/" +
+                        (today.getMonth() + 1).toString().padStart(2, '0') + "/" +
+                        today.getFullYear();
+
+                    document.getElementById("success-date").innerText = formatted;
+
+                }, 50);
+            }
+        };
+
+        var rzp = new Razorpay(options);
+        rzp.open();
+    });
+}
+
+</script>
+
+
+
+{% endblock %}
+
+
+
+
+
