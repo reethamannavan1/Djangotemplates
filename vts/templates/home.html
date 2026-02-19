@@ -1,0 +1,387 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="hero">
+
+    <div class="hero-card">
+        <h3>IT Training, Internship & Career Support</h3>
+        <p>
+            This platform is designed for learners who want to build practical IT
+            skills through structured training programs.
+        </p>
+    </div>
+
+    <div class="hero-actions">
+      <a href="{% url 'courses' %}">
+    <button class="primary">View Training Program</button>
+</a>
+
+<a href="{% url 'contact' %}">
+    <button class="secondary">Free Consultation</button>
+</a>
+
+    </div>
+
+</div>
+
+<div class="stats">
+    <div><h2>8+</h2><p>Years of Excellence</p></div>
+    <div><h2>5000+</h2><p>Students Trained</p></div>
+    <div><h2>85%</h2><p>Placement Rate</p></div>
+    <div><h2>4.8/5</h2><p>Student Satisfaction</p></div>
+</div>
+
+<section class="who-section">
+
+    <div class="who-container">
+
+        <!-- IMAGE SIDE -->
+        <div class="who-image-wrapper">
+            <img src="{% static 'images/whoweare.jpg' %}" class="who-image">
+
+            <div class="info-card">
+                <strong>Established in 2021</strong>
+                <p>
+                    Specializing in IT training,
+                    placement, and custom software
+                    development in Surandai.
+                </p>
+            </div>
+        </div>
+
+        <!-- TEXT SIDE -->
+        <div class="who-text">
+            <h2>Who We are?</h2>
+            <p>
+                We are a training centre that helps students learn IT skills.
+                We also have our own IT startup where real software work is done.
+                Along with training, we provide consultation services to guide
+                students in career and job-related matters.
+            </p>
+
+            <button class="learn-btn">Learn More</button>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="why-section">
+
+    <div class="why-container">
+
+        <!-- LEFT IMAGE -->
+       <div class="why-image">
+    {% if section %}
+        <img src="{{ section.image.url }}">
+    {% endif %}
+</div>
+
+<div class="why-circle">
+    <div class="circle-text">
+        {{ section.circle_text }}
+    </div>
+</div>
+
+
+        <!-- RIGHT FEATURE CARDS -->
+        <div class="why-features">
+
+            {% for feature in features %}
+            <div class="feature-card">
+                <div class="icon-box">
+                    <img src="{{ feature.icon.url }}">
+                </div>
+
+                <div class="feature-content">
+                    <h4>{{ feature.title }}</h4>
+                    <p>{{ feature.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="vts-works">
+
+    <h2>{{ works_section.title }}</h2>
+    <p class="subtitle">{{ works_section.subtitle }}</p>
+
+    <div class="timeline"></div>
+
+    
+<div class="works-frame">
+    <div class="works-container">
+
+        {% for step in steps %}
+        <div class="work-card">
+            <img src="{{ step.icon.url }}" class="iconvtsworks">
+
+            <div class="step-number">
+                {{ forloop.counter }}
+            </div>
+
+            <h4>{{ step.title }}</h4>
+            <p>{{ step.description }}</p>
+        </div>
+        {% endfor %}
+
+        <img src="{{ works_section.side_image.url }}" class="side-image">
+
+    </div>
+    </div>
+
+</section>
+
+
+
+<!-- ================= FEATURED COURSES ================= -->
+
+<section class="home-featured">
+
+    <h2 class="home-featured-title">Featured Courses</h2>
+    <p class="home-featured-sub">Choose from our most popular industry-aligned programs</p>
+
+    <div class="home-featured-grid">
+
+        <!-- card 1 -->
+        <div class="home-featured-card">
+
+            <img src="{% static 'images/coursepython.png' %}" class="home-featured-img">
+
+            <div class="home-featured-body">
+
+                <h3>Full Stack Development</h3>
+
+              <div class="home-featured-meta">
+    <img src="{% static 'images/homefeatureicon1.png' %}" class="home-meta-icon">
+    <span>6 Months</span>
+</div>
+
+<div class="home-featured-meta">
+    <img src="{% static 'images/homefeatureicon2.png' %}" class="home-meta-icon">
+    <span>Beginner to Advanced</span>
+</div>
+
+
+                <p class="homepara1">Build complete web applications</p>
+
+                <div class="home-featured-actions">
+                    <a class="home-featured-view">View Details</a>
+                    <button class="home-featured-enroll">Enroll Now</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- card 2 -->
+        <div class="home-featured-card">
+
+            <img src="{% static 'images/dataanalysis.png' %}" class="home-featured-img">
+
+            <div class="home-featured-body">
+
+                <h3>Data Science & Analytics</h3>
+
+                     <div class="home-featured-meta">
+    <img src="{% static 'images/homefeatureicon1.png' %}" class="home-meta-icon">
+    <span>5 Months</span>
+</div>
+
+<div class="home-featured-meta">
+    <img src="{% static 'images/homefeatureicon2.png' %}" class="home-meta-icon">
+    <span> Advanced</span>
+</div>
+
+                <p class="homepara1">Master data analysis and ML</p>
+
+                <div class="home-featured-actions">
+                    <a class="home-featured-view">View Details</a>
+                    
+                    <button class="home-featured-enroll">Enroll Now</button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- card 3 -->
+        <div class="home-featured-card">
+
+            <img src="{% static 'images/cloud.jpg' %}" class="home-featured-img">
+
+            <div class="home-featured-body">
+
+                <h3>Cloud Computing (AWS)</h3>
+
+                      <div class="home-featured-meta">
+    <img src="{% static 'images/homefeatureicon1.png' %}" class="home-meta-icon">
+    <span>4 Months</span>
+</div>
+
+<div class="home-featured-meta">
+    <img src="{% static 'images/homefeatureicon2.png' %}" class="home-meta-icon">
+    <span> Advanced</span>
+</div>
+
+                <p class="homepara1">Become cloud certified</p>
+
+                <div class="home-featured-actions">
+                    <a class="home-featured-view">View Details</a>
+                    <button class="home-featured-enroll">Enroll Now</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="home-featured-footer">
+        <a href="{% url 'courses' %}" class="home-featured-all ">View All Courses</a>
+    </div>
+
+</section>
+
+
+
+<section class="success-projects">
+    <h2>Students Success Projects</h2>
+    <p class="subtitle">See what our students have built and achieved</p>
+
+    <div class="projects-row">
+        {% for project in projects %}
+        <div class="project-card">
+            <img src="{{ project.image.url }}">
+
+            <div class="project-info">
+                <div>
+                    <strong>{{ project.title }}</strong><br>
+                    <small> {{ project.student_name }}</small>
+                </div>
+                <span>{{ project.category }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="showcase-btn">View Showcase ↗</button>
+</section>
+
+
+
+<section class="stories-section">
+    <h2>Stories from Our Successful Learners</h2>
+    <p class="subtitle">
+        Real stories from real students who transformed their careers
+    </p>
+
+ <div class="stories-slider">
+
+    <div class="slider-track">
+
+        {% for story in stories %}
+        <div class="story-card">
+            <img src="{{ story.photo.url }}" class="story-image">
+
+            <div class="story-overlay">
+                <div>
+                    <strong>{{ story.name }}</strong><br>
+                    <small>{{ story.role }}</small>
+                </div>
+
+                <button class="play-btn"
+                onclick="openVideo(
+                    '{{ story.youtube_url|default:'' }}',
+                    '{% if story.video_file %}{{ story.video_file.url }}{% endif %}'
+                )">
+                ▶
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% for story in stories %}
+        <div class="story-card">
+            <img src="{{ story.photo.url }}" class="story-image">
+
+            <div class="story-overlay">
+                <div>
+                    <strong>{{ story.name }}</strong><br>
+                    <small>{{ story.role }}</small>
+                </div>
+
+                <button class="play-btn"
+                onclick="openVideo(
+                    '{{ story.youtube_url|default:'' }}',
+                    '{% if story.video_file %}{{ story.video_file.url }}{% endif %}'
+                )">
+                ▶
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+
+</section>
+
+<div id="videoModal" class="video-modal">
+    <div class="video-content">
+        <span onclick="closeVideo()" class="close-btn">&times;</span>
+        <iframe id="youtubeFrame" allowfullscreen></iframe>
+        <video id="localVideo" controls></video>
+    </div>
+</div>
+
+
+
+
+
+<section class="cta-section">
+
+    <div class="cta-container">
+
+        <div class="cta-image">
+            <div class="semi-circle"></div>
+            <img src="{{ cta.image.url }}">
+        </div>
+
+        <div class="cta-content">
+            <h2>{{ cta.title }}</h2>
+            <p>{{ cta.subtitle }}</p>
+
+            <a href="{{ cta.button_link }}" class="cta-btn">
+                {{ cta.button_text }}
+            </a>
+        </div>
+
+        <div class="bubble bubble1"></div>
+        <div class="bubble bubble2"></div>
+        <div class="bubble bubble3"></div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+
+
+
+

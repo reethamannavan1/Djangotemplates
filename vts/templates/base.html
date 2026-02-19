@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VTS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="topbar">
+    <div>
+        Welcome to <span class="brand">VETRI TECHNOLOGY SOLUTIONS</span>
+    </div>
+
+   <div class="contact">
+
+    <span class="top-icon">
+        <img src="{% static 'images/homemail.png' %}" class="top-icon-img">
+        vetritechnologysolution@gmail.com
+    </span>
+
+    <span class="top-icon">
+        <img src="{% static 'images/homephone.png' %}" class="top-icon-img">
+        8438558527
+    </span>
+
+</div>
+
+</div>
+
+<div class="india-strip" id="indiaText">
+    India’s First IT Training Institute with 100% Placement
+</div>
+
+
+<div class="navbar">
+    <img src="{% static 'images/logo.jpg' %}" class="logo">
+
+    <input class="search" placeholder="Search here">
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'courses' %}">Courses</a>
+
+        <a href="{% url 'about' %}">About Us</a>
+        <a href="{% url 'contact' %}">Contact Us</a>
+        <a href="{% url 'courses' %}">
+        <button class="enroll">Enroll Now</button></a>
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+<!-- FOOTER (placeholder) -->
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- LEFT SECTION -->
+        <div class="footer-col logo-col">
+            <img src="{% static 'images/logo.jpg' %}" class="footer-logo">
+
+            <h4>Address</h4>
+            <p>
+                SURANDAI BUS STAND BACKSIDE,<br>
+                SURANDAI<br>
+                TENKASI-627 859
+            </p>
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a>About Us</a>
+            <a>Contact Us</a>
+            <a>Courses</a>
+        </div>
+
+        <!-- SUPPORT -->
+        <div class="footer-col">
+            <h4>Support</h4>
+            <a>Terms & Conditions</a>
+            <a>Privacy Policy</a>
+        </div>
+
+        <!-- NETWORK -->
+        <div class="footer-col">
+            <h4>Our Network</h4>
+            <a>Vetri Technology Solution (VTS)</a>
+            <a>Vetri IT System (VIS)</a>
+            <a>Vetri Consultancy Services (VCS)</a>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-col">
+            <h4>Get In Touch</h4>
+            <p>Call: +91 8438558527</p>
+            <p>Email: vetritechnologysolution@gmail.com</p>
+
+          <h4>Follow Us</h4>
+<div class="social">
+
+    <!-- Facebook -->
+    <svg class="icon" viewBox="0 0 24 24">
+        <path fill="white"
+            d="M22 12a10 10 0 10-11.6 9.9v-7H7.7v-2.9h2.7V9.4c0-2.7 1.6-4.2 4.1-4.2
+               1.2 0 2.4.2 2.4.2v2.6h-1.4c-1.4 0-1.8.9-1.8 1.7v2h3.1l-.5 2.9h-2.6v7A10
+               10 0 0022 12"/>
+    </svg>
+
+    <!-- Instagram -->
+    <svg class="icon" viewBox="0 0 24 24">
+        <path fill="white"
+            d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2
+               5-5V7c0-2.8-2.2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0
+               010-10zm6.5-.9a1.1 1.1 0 110 2.2 1.1 1.1 0 010-2.2zM12
+               9a3 3 0 100 6 3 3 0 000-6z"/>
+    </svg>
+
+    <!-- Twitter -->
+    <svg class="icon" viewBox="0 0 24 24">
+        <path fill="white"
+            d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3
+               1.7-2.2-.8.5-1.7.8-2.6 1a4.1 4.1 0
+               00-7 3.7A11.6 11.6 0 013 4.8a4.1 4.1
+               0 001.3 5.5c-.6 0-1.2-.2-1.7-.5v.1a4.1
+               4.1 0 003.3 4 4.2 4.2 0 01-1.1.1c-.3
+               0-.5 0-.8-.1a4.1 4.1 0 003.8 2.8A8.3
+               8.3 0 012 19.5 11.7 11.7 0 008.3
+               21c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.5
+               1.5-1.2 2.1-2.1z"/>
+    </svg>
+
+    <!-- YouTube -->
+    <svg class="icon" viewBox="0 0 24 24">
+        <path fill="white"
+            d="M23 7.5s-.2-1.6-.8-2.3c-.8-.9-1.7-.9-2.1-1C17.1
+               4 12 4 12 4h0s-5.1 0-8.1.2c-.4 0-1.3.1-2.1
+               1C1.2 5.9 1 7.5 1 7.5S1 9.3 1 11v2c0
+               1.7 0 3.5 0 3.5s.2 1.6.8 2.3c.8.9 1.9.9
+               2.4 1C6 20 12 20 12 20s5.1 0 8.1-.2c.4
+               0 1.3-.1 2.1-1 .6-.7.8-2.3.8-2.3S23
+               14.7 23 13v-2c0-1.7 0-3.5 0-3.5zM10
+               15V9l5 3-5 3z"/>
+    </svg>
+
+</div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 All Rights Reserved By DITRP
+    </div>
+
+</footer>
+
+
+<script>
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
+
+
+<script src="{% static 'js/stories.js' %}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+    const el = document.getElementById("indiaText");
+    const text = el.innerText;
+
+    const words = text.split(" ");
+    el.innerHTML = "";
+
+    words.forEach((word, index)=>{
+        const span = document.createElement("span");
+        span.innerText = word;
+        span.classList.add("word");
+        el.appendChild(span);
+
+        setTimeout(()=>{
+            span.classList.add("show");
+        }, index * 300);
+    });
+
+    /* ⭐ ADD IMAGE AFTER LAST WORD */
+    setTimeout(()=>{
+        const img = document.createElement("img");
+        img.src = "{% static 'images/handicon.png' %}";
+        img.classList.add("india-hand");
+        el.appendChild(img);
+    }, words.length * 300 + 200);
+
+});
+</script>
+
+
+
+</body>
+</html>
