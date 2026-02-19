@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="contact-hero">
+
+    <!-- ⭐ ORANGE CIRCLE -->
+    <div class="contact-circle"></div>
+
+    <div class="contact-container">
+
+        <!-- ⭐ LEFT CONTENT -->
+        <div class="contact-left">
+
+            <h2>Get in Touch with our Experts</h2>
+
+            <p>
+                Have questions? We’re here to help you start your learning journey.
+            </p>
+
+            <button class="contact-consult-btn">Free Consultation</button>
+
+        </div>
+
+
+
+        <!-- ⭐ FORM CARD -->
+        <div class="contact-form-card">
+
+            <h3 class="contact-form-title">Enquiry Form</h3>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="contact-grid">
+
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="name" placeholder="Namratha">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="name@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" name="phone" placeholder="1234567890">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Course Interest</label>
+                        <select name="course">
+    <option value="">Select Course</option>
+    {% for c in courses %}
+        <option value="{{ c.id }}">{{ c.title }}</option>
+    {% endfor %}
+</select>
+
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Message</label>
+                        <textarea placeholder="Type here.."></textarea>
+                    </div>
+
+                </div>
+
+                <button class="contact-submit">Submit</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- ⭐ PURPLE STRIP -->
+    <div class="contact-strip"></div>
+
+</section>
+
+
+
+<!-- Vetri Contact Section Start -->
+<section class="vt-contact-section">
+    <div class="vt-contact-container">
+
+        <!-- Left Side -->
+        <div class="vt-contact-left">
+            <h2 class="vt-contact-heading">We are here for You</h2>
+
+            <!-- Email Card -->
+            <div class="vt-contact-card">
+                <div class="vt-contact-icon">
+                    <img src="{% static 'images/contactmail.png' %}" alt="Email Icon">
+                </div>
+                <div class="vt-contact-info">
+                    <h4>Email Us</h4>
+                    <p>vetritechnologysolutions@gmail.com</p>
+                </div>
+            </div>
+
+            <!-- Call Card -->
+            <div class="vt-contact-card">
+                <div class="vt-contact-icon">
+                    <img src="{% static 'images/contactphone.png' %}" alt="Phone Icon">
+                </div>
+                <div class="vt-contact-info">
+                    <h4>Call Us</h4>
+                    <p>8435653527</p>
+                    <p>8438164827</p>
+                </div>
+            </div>
+
+            <!-- Office Hours Card -->
+            <div class="vt-contact-card">
+                <div class="vt-contact-icon">
+                    <img src="{% static 'images/contacthours.png' %}" alt="Clock Icon">
+                </div>
+                <div class="vt-contact-info">
+                    <h4>Office Hours</h4>
+                    <p>Mon - Sat : 10:00 AM - 5:00 PM</p>
+                    <p>Sunday closed</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Side -->
+        <div class="vt-contact-right">
+            <div class="vt-contact-map-wrapper">
+                <img src="{% static 'images/map.jpg' %}" alt="Map">
+                <div class="vt-contact-map-label">
+                    Vetri Technology solution
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Vetri Contact Section End -->
+
+
+<!-- ================= OUR BRANCH ================= -->
+
+<section class="ourbranch-section">
+
+    <h2 class="ourbranch-title">Visit Our Branch</h2>
+
+    <div class="ourbranch-grid">
+
+        <!-- card 1 -->
+        <div class="ourbranch-card">
+            <img src="{% static 'images/location.png' %}" class="ourbranch-icon">
+            <h4>Surandai - April's Complex</h4>
+            <p>April's Complex, Bus Stand Backside, Surandai - 627859.</p>
+        </div>
+
+        <!-- card 2 -->
+        <div class="ourbranch-card">
+            <img src="{% static 'images/location.png' %}" class="ourbranch-icon">
+            <h4>Surandai - Shanthi Complex</h4>
+            <p>Shanthi Complex, Surandai Old Market, Near Bus Stand, Surandai - 627859.</p>
+        </div>
+
+        <!-- card 3 -->
+        <div class="ourbranch-card">
+            <img src="{% static 'images/location.png' %}" class="ourbranch-icon">
+            <h4>Tirunelveli</h4>
+            <p>Behind Side, Near Bus Stop, Chella Samy Teacher Complex, Tirunelveli - 627859.</p>
+        </div>
+
+        <!-- card 4 -->
+        <div class="ourbranch-card">
+            <img src="{% static 'images/location.png' %}" class="ourbranch-icon">
+            <h4>Nagercoil</h4>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= OUR ENVIRONMENT ================= -->
+
+<section class="ourenv-section">
+
+    <div class="ourenv-header">
+        <h3>Our Learning Environment</h3>
+        <a class="ourenv-view">View all →</a>
+    </div>
+
+    <div class="ourenv-grid">
+
+        <img src="{% static 'images/env1.jpg' %}" class="ourenv-img">
+        <img src="{% static 'images/env2.jpg' %}" class="ourenv-img">
+        <img src="{% static 'images/env3.png' %}" class="ourenv-img">
+
+    </div>
+
+</section>
+
+<!-- ================= FAQ ================= -->
+
+<section class="faq-section">
+
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+
+    <div class="faq-container">
+
+        <div class="faq-item">
+            <h4 class="faq-question">What are the course timings?</h4>
+            <p class="faq-answer">
+                We offer flexible timings including weekday evenings (6–9 PM) and weekend batches (10 AM - 5 PM).
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <h4 class="faq-question">Do you offer placement assistance?</h4>
+            <p class="faq-answer">
+                Yes! VCS provides comprehensive placement support including resume building, interview preparation, and job referrals.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <h4 class="faq-question">What is the batch size?</h4>
+            <p class="faq-answer">
+                We maintain small batch sizes of 15–20 students to ensure personalized attention and effective learning.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+{% if messages %}
+<div class="toast-container">
+    {% for message in messages %}
+        <div class="toast {{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+{% endblock %}

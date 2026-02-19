@@ -1,0 +1,354 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="about-section">
+
+    <div class="about-header">
+        <h1>{{ intro.main_title }}</h1>
+        <p>{{ intro.subtitle }}</p>
+    </div>
+
+    <div class="about-story">
+
+        <div class="story-text">
+            <h2>{{ intro.story_title }}</h2>
+            <p>{{ intro.story_content }}</p>
+        </div>
+
+        <div class="story-image">
+            {% if intro.story_image %}
+                <img src="{{ intro.story_image.url }}">
+            {% endif %}
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="mission-vision-section">
+
+    <div class="mission-vision-container">
+
+        {% for value in values %}
+        <div class="mv-card">
+
+            <div class="mv-card-inner">
+                <img src="{{ value.icon.url }}" class="mv-icon">
+                <h3>{{ value.title }}</h3>
+                <p>{{ value.description }}</p>
+            </div>
+
+            <div class="mv-purple-base"></div>
+            <div class="mv-bottom-shape"></div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- ================= VALUE DRIVEN SECTION ================= -->
+
+<section class="value-driven-section">
+
+    <h2 class="section-title">Our Value-Driven Training Approach</h2>
+
+    <div class="value-cards">
+
+        <div class="value-card">
+            <div class="value-accent"></div>
+            <div class="value-content">
+                <p>
+                    At VTS, we believe quality education should be accessible without compromise.
+                    Our programs are thoughtfully structured to support learners from diverse
+                    backgrounds, including those with career gaps.
+                    We focus on skills, growth, and readiness — not on past timelines.
+                </p>
+            </div>
+        </div>
+
+        <div class="value-card">
+            <div class="value-accent"></div>
+            <div class="value-content">
+                <p>
+                    Our training fees remain affordable because we operate as part of a strong
+                    ecosystem, not as a standalone institute.
+                    We never compromise on quality, mentorship, or learning outcomes.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= SHAPE SKILLS SECTION ================= -->
+
+<section class="shape-skills-section">
+
+    <h2 class="section-title">How we Shape Your Skills</h2>
+
+    <div class="skills-cards">
+
+        <!-- Card 1 -->
+        <div class="skill-card">
+            <div class="skill-card-inner">
+
+                <div class="skill-icon">
+                    <img src="{% static 'images/abouticon1.png' %}" alt="">
+                </div>
+
+                <h4>About the Training Platform</h4>
+
+                <ul>
+                    <li>Student - focused IT training</li>
+                    <li>Practical skill development</li>
+                    <li>Structured learning support</li>
+                </ul>
+
+            </div>
+            <div class="skill-base"></div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="skill-card">
+            <div class="skill-card-inner">
+
+                <div class="skill-icon">
+                    <img src="{% static 'images/abouticon2.png' %}" alt="">
+                </div>
+
+                <h4>Our Learning Approach</h4>
+
+                <ul>
+                    <li>Step-by-step teaching</li>
+                    <li>Hands-on practice</li>
+                    <li>Daily Tasks</li>
+                    <li>Projects</li>
+                </ul>
+
+            </div>
+            <div class="skill-base"></div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="skill-card">
+            <div class="skill-card-inner">
+
+                <div class="skill-icon">
+                    <img src="{% static 'images/abouticon3.png' %}" alt="">
+                </div>
+
+                <h4>Industry Connection</h4>
+
+                <ul>
+                    <li>Linked with real IT startup</li>
+                    <li>Awareness of industry practices</li>
+                    <li>Career-oriented learning</li>
+                </ul>
+
+            </div>
+            <div class="skill-base"></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- Training Journey -->
+
+<section class="training-journey-section">
+  <h2 class="section-title">Your Training Journey</h2>
+
+  <!-- First Row: Left to Right -->
+  <div class="journey-row">
+    <div class="journey-card">
+      <img src="{% static 'images/journey1.png' %}" alt="Step 1" class="journey-icon">
+      <h3>Entry & Counselling</h3>
+      <p>Get Guidance to choose the right career</p>
+    </div>
+    <div class="arrow">------&gt;</div>
+    <div class="journey-card">
+      <img src="{% static 'images/journey2.png' %}" alt="Step 2" class="journey-icon">
+      <h3>Joining</h3>
+      <p>Enroll and receive course access and schedule</p>
+    </div>
+    <div class="arrow">------&gt;</div>
+    <div class="journey-card">
+      <img src="{% static 'images/journey3.png' %}" alt="Step 3" class="journey-icon">
+      <h3>Training Phase</h3>
+      <p>Learn through practial sessions and real projects</p>
+    </div>
+  </div>
+
+  <!-- Second Row: Right to Left -->
+  <div class="journey-row reverse">
+    <div class="journey-card">
+      <img src="{% static 'images/journey4.png' %}" alt="Step 4" class="journey-icon">
+      <h3>Completion & Certification</h3>
+      <p>Finish the course and earn your certificate</p>
+    </div>
+    <div class="arrow">&lt;------</div>
+    <div class="journey-card">
+      <img src="{% static 'images/journey5.png' %}" alt="Step 5" class="journey-icon">
+      <h3>Best Performer Opportunity</h3>
+      <p>Top performers gets hands on internship experience</p>
+    </div>
+    <div class="arrow">&lt;------</div>
+    <div class="journey-card">
+      <img src="{% static 'images/journey6.png' %}" alt="Step 6" class="journey-icon">
+      <h3>Job Opportunity</h3>
+      <p>Outstanding students may recieve job opportunities</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- ================= WHO CAN JOIN ================= -->
+
+<section class="who-join-section">
+
+    <h2 class="section-title">Who Can Join</h2>
+
+    <!-- ROW 1 -->
+    <div class="join-row row-2">
+
+        <!-- Students -->
+        <div class="join-item orange">
+            <div class="hex-border">
+                <div class="hex-white">
+                      <div class="hex-bg">
+                    <img src="{% static 'images/hex1.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="join-card">
+                <span>Students</span>
+            </div>
+        </div>
+
+        <!-- Fresher -->
+        <div class="join-item purple">
+            <div class="hex-border">
+                <div class="hex-white">
+                    <img src="{% static 'images/hex2.png' %}" alt="">
+                </div>
+            </div>
+
+            <div class="join-card">
+                <span>Fresher Graduates</span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ROW 2 -->
+    <div class="join-row row-3">
+
+        <!-- Working -->
+        <div class="join-item purple">
+            <div class="hex-border">
+                <div class="hex-white">
+                    <img src="{% static 'images/hex3.png' %}" alt="">
+                </div>
+            </div>
+
+            <div class="join-card">
+                <span>Working Professionals</span>
+            </div>
+        </div>
+
+        <!-- Career break -->
+        <div class="join-item orange">
+            <div class="hex-border">
+                <div class="hex-white">
+                    <img src="{% static 'images/hex4.png' %}" alt="">
+                </div>
+            </div>
+
+            <div class="join-card">
+                <span>Career Break Learners</span>
+            </div>
+        </div>
+
+        <!-- Switchers -->
+        <div class="join-item purple">
+            <div class="hex-border">
+                <div class="hex-white">
+                    <img src="{% static 'images/hex5.png' %}" alt="">
+                </div>
+            </div>
+
+            <div class="join-card">
+                <span>Career Switchers</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="about-stats-section">
+
+    <div class="stats-card">
+
+        <h2 class="stats-card-title">Our Impact</h2>
+
+        <div class="stats">
+            <div><h2>8+</h2><p>Years of Excellence</p></div>
+            <div><h2>5000+</h2><p>Students Trained</p></div>
+            <div><h2>85%</h2><p>Placement Rate</p></div>
+            <div><h2>4.8/5</h2><p>Student Satisfaction</p></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+<!-- ================= ABOUT CTA ================= -->
+
+<section class="about-cta-section">
+
+    <div class="about-cta-card">
+
+        <div class="about-cta-left">
+
+            <img src="{% static 'images/aboutcta.png' %}" class="about-cta-avatar">
+
+            <div class="about-cta-text">
+                <h3>Ready to Start Your Career</h3>
+                <p>
+                    Direct placement support and interview opportunities at our integrated
+                    IT startup ecosystem. Start your career with confidence!
+                </p>
+            </div>
+
+        </div>
+
+        <button class="about-cta-btn">Get Free Consultation Now</button>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
