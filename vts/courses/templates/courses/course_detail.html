@@ -268,9 +268,11 @@
         {% endif %}
     </div>
 
+    <button type="button" class="submit-btn" onclick="goToConfirmStep()">Submit</button>
+
 </div>
 
-<button type="button" class="submit-btn" onclick="goToConfirmStep()">Next</button>
+
 
 
 </form>
@@ -424,7 +426,9 @@
     </div>
 
     <div class="success-actions">
-        <button class="invoice-btn">Download Invoice</button>
+        <a href="{% url 'download_invoice' course.id %}">
+    <button class="invoice-btn">Download Invoice</button>
+</a>
     </div>
 
 </div>
