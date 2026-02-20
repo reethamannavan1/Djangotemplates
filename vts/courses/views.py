@@ -1,23 +1,33 @@
 from django.shortcuts import render
 from .models import Course, Category
+from django.db.models import Q 
 
 
 def courses_page(request):
     categories = Category.objects.all()
-    selected_category = request.GET.get("category")
 
+    # ⭐ start with all courses
+    courses = Course.objects.all()
+
+    # ⭐ SEARCH FILTER
+    search_query = request.GET.get("search")
+    if search_query:
+        courses = courses.filter(
+            Q(title__icontains=search_query) |
+            Q(description__icontains=search_query)
+        )
+
+    # ⭐ CATEGORY FILTER
+    selected_category = request.GET.get("category")
     if selected_category:
-        courses = Course.objects.filter(category__id=selected_category)
-    else:
-        courses = Course.objects.all()
+        courses = courses.filter(category__id=selected_category)
 
     return render(request, "courses/courses.html", {
         "categories": categories,
         "courses": courses,
         "selected_category": selected_category,
+        "search_query": search_query, 
     })
-
-
 
 
 from django.shortcuts import render, get_object_or_404, redirect
