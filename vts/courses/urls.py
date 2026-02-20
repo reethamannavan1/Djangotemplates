@@ -1,9 +1,11 @@
 from django.urls import path
-from .views import courses_page, course_detail,create_razorpay_order
+from .views import courses_page, course_detail,create_razorpay_order,download_invoice
 
 urlpatterns = [
     path('', courses_page, name='courses'),
     path('<int:id>/', course_detail, name='course_detail'),
     path("create-order/<int:id>/", create_razorpay_order, name="create_order"),
+    # courses/urls.py
+    path("invoice/<int:id>/", download_invoice, name="download_invoice"),
 
 ]

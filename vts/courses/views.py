@@ -120,3 +120,31 @@ def create_razorpay_order(request, id):
 
 
 
+
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+
+
+def download_invoice(request, id):
+    course = Course.objects.get(id=id)
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="invoice_{course.id}.pdf"'
+
+    p = canvas.Canvas(response, pagesize=letter)
+
+    # ⭐ simple invoice layout
+    p.setFont("Helvetica-Bold", 16)
+    p.drawString(100, 750, "Vetri Technology Solutions")
+
+    p.setFont("Helvetica", 12)
+    p.drawString(100, 720, f"Course: {course.title}")
+    p.drawString(100, 700, f"Amount: ₹ {course.fee}")
+
+    p.drawString(100, 670, "Thank you for your enrollment!")
+
+    p.showPage()
+    p.save()
+
+    return response
