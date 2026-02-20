@@ -38,7 +38,13 @@
 <div class="navbar">
     <img src="{% static 'images/logo.jpg' %}" class="logo">
 
-    <input class="search" placeholder="Search here">
+    <form action="{% url 'courses' %}" method="GET" class="search-wrapper">
+
+    <img src="{% static 'images/searchicon.png' %}" class="search-icon">
+
+    <input type="text" name="search" class="search" placeholder="Search courses">
+
+</form>
 
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
