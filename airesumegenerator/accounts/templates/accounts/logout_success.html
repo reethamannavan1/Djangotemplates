@@ -1,0 +1,31 @@
+{% extends "base/base.html" %}
+
+{% block title %}Logged out · Resume AI{% endblock %}
+
+{% block content %}
+<div class="min-h-[70vh] flex items-center justify-center px-4">
+  <div class="w-full max-w-md text-center">
+
+    <h1 class="text-2xl font-semibold text-gray-800">
+      You have been logged out successfully
+    </h1>
+
+    <p class="text-sm text-gray-500 mt-2">
+      Thank you for using Resume AI. We hope to see you again soon.
+    </p>
+
+    <div class="mt-8 flex flex-col gap-3 items-center">
+      <a href="{% url 'login' %}"
+         class="w-full max-w-xs bg-[var(--color-primary)] text-white py-3 rounded-md font-medium">
+        Login again
+      </a>
+
+      <a href="/"
+         class="w-full max-w-xs bg-gray-200 text-gray-700 py-3 rounded-md font-medium">
+        Go to Homepage
+      </a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

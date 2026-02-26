@@ -1,0 +1,57 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+
+<!-- SEARCH BAR -->
+<div class="flex items-center gap-4 mb-6">
+    <input placeholder="Search Post"
+           class="flex-1 border rounded-full px-4 py-2 shadow-sm">
+
+    <button class="bg-blue-500 text-white px-6 py-2 rounded-full">
+        Search
+    </button>
+</div>
+
+<!-- BLOG GRID -->
+<div class="grid grid-cols-3 gap-6">
+
+{% for post in posts %}
+    <div class="bg-white border rounded shadow-sm">
+
+        <img src="{{ post.image.url }}" class="w-full h-40 object-cover">
+
+        <div class="p-3">
+
+            <p class="text-xs text-gray-500 mb-1">
+                By: {{ post.author }} / {{ post.created_at|date:"Y-m-d" }}
+            </p>
+
+            <h3 class="font-semibold text-sm mb-1">
+                {{ post.title }}
+            </h3>
+
+            <p class="text-xs text-gray-500 mb-2">
+                {{ post.excerpt|truncatechars:100 }}
+            </p>
+
+            <a href="{% url 'blog_detail' post.slug %}" class="text-blue-500 text-xs">
+                Read more
+            </a>
+
+        </div>
+    </div>
+{% endfor %}
+
+</div>
+
+<!-- LOAD MORE UI -->
+<div class="flex justify-center mt-8">
+    <button class="bg-blue-500 text-white px-6 py-2 rounded-full">
+        Load More
+    </button>
+</div>
+
+{% endblock %}
