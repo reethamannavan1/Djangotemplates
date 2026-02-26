@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- =====================
+         META
+    ====================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AI Resume Generator{% endblock %}</title>
+
+    <!-- =====================
+         FONTS (Inter + Jaro)
+    ====================== -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Jaro&display=swap" rel="stylesheet">
+
+    <!-- =====================
+         TAILWIND (FAST UI DEV)
+    ====================== -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <!-- =====================
+         GLOBAL CSS TOKENS
+    ====================== -->
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+
+    <!-- =====================
+         PAGE EXTRA CSS
+    ====================== -->
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="min-h-screen flex flex-col bg-white">
+
+     {% if messages %}
+<div class="fixed top-6 right-6 space-y-2 z-50">
+  {% for message in messages %}
+    <div class="px-4 py-3 rounded shadow text-sm
+      {% if message.tags == 'success' %}bg-green-500 text-white
+      {% elif message.tags == 'error' %}bg-red-500 text-white
+      {% else %}bg-blue-500 text-white{% endif %}">
+      {{ message }}
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+    <!-- =====================
+         NAVBAR
+    ====================== -->
+    {% include "base/partials/navbar.html" %}
+
+    <!-- =====================
+         MAIN CONTENT
+    ====================== -->
+    <main class="flex-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- =====================
+         FOOTER
+    ====================== -->
+    {% include "base/partials/footer.html" %}
+
+    <!-- =====================
+         PAGE SCRIPTS
+    ====================== -->
+    {% block extra_js %}{% endblock %}
+
+</body>
+</html>

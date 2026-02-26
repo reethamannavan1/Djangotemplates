@@ -1,0 +1,74 @@
+{% load static %}
+
+<div class="rounded-xl border border-gray-200 overflow-hidden mb-6">
+
+    <!-- HEADER -->
+    <div class="bg-gradient-to-r from-[#8ECEFD] to-[#8ECEFD] px-5 py-8 flex justify-between items-center text-white">
+
+        <!-- LEFT -->
+        <div class="flex items-start gap-3">
+
+            <!-- Icon -->
+            <img src="{% static 'images/ai_icon.png' %}" class="w-10 h-10">
+
+            <div>
+                <div class="font-semibold text-md">AI Assistance</div>
+                <p class="text-sm opacity-90">
+                    Ask AI anything to improve your resume and career content
+                </p>
+            </div>
+
+        </div>
+
+        <!-- RIGHT PILL -->
+        <span class="bg-red-500 text-white text-md px-3 py-2 rounded-full ">
+           
+            AI Assistance
+        </span>
+
+    </div>
+
+    <!-- BODY -->
+    <div class="bg-white p-5">
+
+        <!-- Textarea -->
+        <textarea id="aiPrompt"
+                  class="w-full border border-gray-200 rounded-lg p-3 text-sm outline-none resize-none"
+                  rows="3"
+                  placeholder="Ask anything about your resume..."></textarea>
+
+        <!-- Actions -->
+        <div class="flex justify-between items-center mt-4">
+
+            <!-- Upload -->
+           <div class="flex items-center gap-2">
+    <button type="button"
+            onclick="document.getElementById('aiFile').click()"
+            class="flex items-center gap-2 px-4 py-2 border border-gray-300 text-sm text-gray-600 hover:bg-gray-200 bg-[#EEEEEE]">
+
+        <img src="{% static 'images/uploadphoto.png' %}" class="w-4 h-4">
+        Upload photo
+    </button>
+
+    <!-- hidden input -->
+    <input id="aiFile" type="file" class="hidden">
+</div>
+
+            <!-- Ask -->
+            <button onclick="askAI()"
+                    style="background:#0D99FF;"
+                    class="text-white px-6 py-2 rounded-full text-sm font-medium">
+                Ask Question
+            </button>
+
+        </div>
+
+        <!-- Response -->
+        <div id="aiResponseWrap" class="hidden mt-4">
+            <div id="aiResponse"
+                 class="bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm whitespace-pre-wrap"></div>
+        </div>
+
+    </div>
+
+</div>

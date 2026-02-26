@@ -1,0 +1,148 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="bg-[#F3F7FD] p-4 rounded">
+
+  <!-- SEARCH -->
+
+ 
+
+
+<form class="flex gap-3 mb-3">
+
+<input name="keyword"
+       placeholder="Job, Titles, Keywords or company"
+        class="flex-1 border px-3 py-2 rounded text-sm">
+
+<input name="location"
+       placeholder="Location"
+       class="w-52 border px-3 py-2 rounded text-sm">
+
+<button class="bg-[#0D99FF] text-white px-6 rounded text-sm flex items-center gap-1">
+  <img src="{% static 'images/search.png' %}" class="w-4">
+  Search
+</button>
+
+</form>
+
+ 
+
+  <!-- breadcrumb -->
+
+  <p class="text-sm text-gray-600 mb-2">
+    Home / <span class="text-red-500">Recent Job Alert</span>
+  </p>
+
+  <!-- MASTER DETAIL GRID -->
+
+<div class="flex gap-4">
+
+<!-- LEFT -->
+<div class="bg-[#EAF4FF] border rounded flex flex-col h-[560px] w-[380px] shrink-0">
+
+  <p class="px-4 py-2 border-b text-sm font-semibold">
+    Most Recent Jobs
+  </p>
+
+  <!-- scroll -->
+  <div class="overflow-y-auto flex-1">
+
+  {% for job in jobs %}
+
+    <a href="?job={{ job.id }}"
+       class="flex gap-3 p-3 border-b hover:bg-white">
+
+      <div class="w-12 h-12 bg-white border flex items-center justify-center rounded">
+        <img src="{% static 'images/job.png' %}" class="w-6">
+      </div>
+
+      <div class="flex-1">
+        <p class="text-sm font-semibold">{{ job.company }}</p>
+        <p class="text-sm">{{ job.title }}</p>
+        <p class="text-xs text-blue-600">General</p>
+        <p class="text-xs text-gray-500">
+          {{ job.location }} / {{ job.job_type }}
+        </p>
+      </div>
+
+      <div class="text-xs text-gray-400">
+        {{ job.posted_days }}d
+      </div>
+
+    </a>
+
+  {% empty %}
+
+    <!-- ⭐ NO RESULT UI -->
+    <div class="flex flex-col items-center justify-center h-full text-center p-6">
+
+      <img src="{% static 'images/job.png' %}" class="w-20 mb-3">
+
+      <p class="text-sm font-semibold text-gray-600">
+        No jobs found
+      </p>
+
+      <p class="text-xs text-gray-400">
+        Try different keyword or location
+      </p>
+
+    </div>
+
+  {% endfor %}
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="bg-[#EAF4FF] border rounded flex flex-col h-[560px] flex-1">
+
+  {% if selected_job %}
+
+  <!-- header -->
+  <div class="flex justify-between items-center p-4 border-b">
+
+    <div class="flex gap-3 items-center">
+      <div class="w-12 h-12 bg-white border flex items-center justify-center rounded">
+        <img src="{% static 'images/job.png' %}" class="w-6">
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold">{{ selected_job.company }}</p>
+        <p class="text-sm">{{ selected_job.title }}</p>
+        <p class="text-xs text-blue-600">General</p>
+        <p class="text-xs text-gray-500">
+          {{ selected_job.location }} / {{ selected_job.job_type }}
+        </p>
+      </div>
+    </div>
+
+    <button class="bg-[#0D99FF] text-white px-4 py-1 rounded-full flex items-center gap-1">
+      <img src="{% static 'images/apply.png' %}" class="w-4">
+      Apply
+    </button>
+
+  </div>
+
+  <!-- description -->
+  <div class="p-4 overflow-y-auto flex-1">
+
+    <p class="font-semibold mb-2">Job Description</p>
+
+    <p class="whitespace-pre-line text-gray-700">
+      {{ selected_job.description }}
+    </p>
+
+  </div>
+
+  {% endif %}
+
+</div>
+
+
+  </div>
+
+</div>
+
+{% endblock %}

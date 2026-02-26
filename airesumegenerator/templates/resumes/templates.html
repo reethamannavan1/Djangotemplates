@@ -1,0 +1,177 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+<section class="p-6">
+
+  <!-- ========================= -->
+  <!-- TABS -->
+  <!-- ========================= -->
+  <div class="flex gap-4 mb-4 items-center">
+
+    <button class="bg-[#0D99FF] text-white px-4 py-2 rounded-full text-sm font-medium">
+      Resume Templates
+    </button>
+
+    <button class="text-[#0D99FF] text-sm font-medium">
+      Cover Letter Templates
+    </button>
+
+    <button class="text-[#0D99FF] text-sm font-medium">
+      Website Templates
+    </button>
+
+  </div>
+
+  <hr class="mb-4">
+
+  <!-- ========================= -->
+  <!-- SEARCH -->
+  <!-- ========================= -->
+  <input
+    type="text"
+    placeholder="Search Resume Templates"
+    class="w-full border border-gray-300 px-2 py-1 text-sm mb-4"
+  >
+
+  <!-- ========================= -->
+  <!-- BANNER -->
+  <!-- ========================= -->
+  <div class="bg-[#8ECEFD] text-white p-5 rounded-lg flex justify-between items-center mb-6">
+    <div>
+      <p class="font-semibold">Create Your Resume in 5 min</p>
+      <p class="text-xs opacity-90">
+        Choose between simple, basic, professional or Creative Free Resume Templates
+      </p>
+    </div>
+
+    <img src="{% static 'images/arrow.png' %}" class="w-7 h-7">
+  </div>
+
+ <!-- ========================= -->
+<!-- TEMPLATE GRID -->
+<!-- ========================= -->
+<div class="grid grid-cols-5 gap-5">
+
+  <!-- CARD 1 -->
+  <div class="bg-white rounded shadow-sm border border-gray-200 pb-3">
+    <div class="relative p-3">
+
+      <div class="h-64 overflow-hidden rounded">
+        <img src="{% static 'images/template1.jfif' %}" class="w-full h-full object-cover">
+      </div>
+
+      <div class="absolute bottom-2 left-0 right-0 flex justify-center gap-2">
+        <div class="w-9 h-9 bg-[#0D99FF] rounded-full flex items-center justify-center shadow cursor-pointer">
+          <img src="{% static 'images/cart.png' %}" class="w-4">
+        </div>
+        <div class="w-9 h-9 bg-[#0D99FF] rounded-full flex items-center justify-center shadow cursor-pointer">
+          <img src="{% static 'images/eye.png' %}" class="w-4">
+        </div>
+      </div>
+
+    </div>
+    <p class="text-center text-sm font-medium text-[#0D99FF]">GRAPHIC</p>
+    <p class="text-center text-sm text-[#0D99FF]">₹20</p>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="bg-white rounded shadow-sm border border-gray-200 pb-3">
+    <div class="relative p-3">
+
+      <div class="h-64 overflow-hidden rounded">
+        <img src="{% static 'images/template2.jfif' %}" class="w-full h-full object-cover">
+      </div>
+
+      <div class="absolute bottom-2 left-0 right-0 flex justify-center gap-2">
+        <div class="w-9 h-9 bg-[#0D99FF] rounded-full flex items-center justify-center shadow">
+          <img src="{% static 'images/cart.png' %}" class="w-4">
+        </div>
+        <div class="w-9 h-9 bg-[#0D99FF] rounded-full flex items-center justify-center shadow">
+          <img src="{% static 'images/eye.png' %}" class="w-4">
+        </div>
+      </div>
+
+    </div>
+    <p class="text-center text-sm font-medium text-[#0D99FF]">KIM</p>
+    <p class="text-center text-sm text-[#0D99FF]">₹20</p>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="bg-white rounded shadow-sm border border-gray-200 pb-3">
+    <div class="relative p-3">
+
+      <div class="h-64 overflow-hidden rounded">
+        <img src="{% static 'images/template3.jfif' %}" class="w-full h-full object-cover">
+      </div>
+
+      <div class="absolute bottom-2 left-0 right-0 flex justify-center gap-2">
+        <div class="w-9 h-9 bg-[#0D99FF] rounded-full flex items-center justify-center shadow">
+          <img src="{% static 'images/cart.png' %}" class="w-4">
+        </div>
+        <div class="w-9 h-9 bg-[#0D99FF] rounded-full flex items-center justify-center shadow">
+          <img src="{% static 'images/eye.png' %}" class="w-4">
+        </div>
+      </div>
+
+    </div>
+    <p class="text-center text-sm font-medium text-[#0D99FF]">MOON</p>
+    <p class="text-center text-sm text-[#0D99FF]">₹20</p>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="bg-white rounded shadow-sm border border-gray-200 pb-3">
+    <div class="relative p-3">
+
+      <div class="h-64 overflow-hidden rounded">
+        <img src="{% static 'images/template4.jfif' %}" class="w-full h-full object-cover">
+      </div>
+
+      <div class="absolute bottom-2 left-0 right-0 flex justify-center gap-2">
+        <div class="w-9 h-9 bg-[#0D99FF] rounded-full flex items-center justify-center shadow">
+          <img src="{% static 'images/cart.png' %}" class="w-4">
+        </div>
+        <div class="w-9 h-9 bg-[#0D99FF] rounded-full flex items-center justify-center shadow">
+          <img src="{% static 'images/eye.png' %}" class="w-4">
+        </div>
+      </div>
+
+    </div>
+    <p class="text-center text-sm font-medium text-[#0D99FF]">MAX</p>
+    <p class="text-center text-sm text-[#0D99FF]">₹20</p>
+  </div>
+
+  <!-- CARD 5 -->
+  <div class="bg-white rounded shadow-sm border border-gray-200 pb-3">
+    <div class="relative p-3">
+
+      <div class="h-64 overflow-hidden rounded">
+        <img src="{% static 'images/template5.jfif' %}" class="w-full h-full object-cover">
+      </div>
+
+      <div class="absolute bottom-2 left-0 right-0 flex justify-center gap-2">
+        <div class="w-9 h-9 bg-[#0D99FF] rounded-full flex items-center justify-center shadow">
+          <img src="{% static 'images/cart.png' %}" class="w-4">
+        </div>
+        <div class="w-9 h-9 bg-[#0D99FF] rounded-full flex items-center justify-center shadow">
+          <img src="{% static 'images/eye.png' %}" class="w-4">
+        </div>
+      </div>
+
+    </div>
+    <p class="text-center text-sm font-medium text-[#0D99FF]">Social</p>
+    <p class="text-center text-sm text-[#0D99FF]">₹20</p>
+  </div>
+
+</div>
+
+  <!-- ========================= -->
+  <!-- LOAD MORE -->
+  <!-- ========================= -->
+  <div class="text-center mt-6">
+    <button class="bg-[#0D99FF] text-white px-4 py-1 rounded-full text-sm">
+      Load More
+    </button>
+  </div>
+
+</section>
+{% endblock %}

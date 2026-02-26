@@ -1,0 +1,64 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h2 class="text-lg font-semibold mb-4">Resume</h2>
+
+
+<!-- Resume Section -->
+<section class="mb-8">
+
+  <!-- Top banner -->
+  <a href="{% url 'pricing' %}" class="block">
+    <div class="bg-gradient-to-r from-[#8ECEFD] to-[#8ECEFD] text-white p-5 rounded-lg flex justify-between items-center mb-5 cursor-pointer hover:opacity-95">
+      <div>
+        <div class="font-semibold text-base">Create Your Resume in 5 min</div>
+        <p class="text-sm opacity-90">
+          Choose between simple, basic, professional or Creative Free Resume Templates
+        </p>
+      </div>
+      <img src="{% static 'images/arrow.png' %}" class="w-7 h-7" alt="arrow">
+    </div>
+  </a>
+
+  <!-- Two cards -->
+  <div class="grid md:grid-cols-2 gap-6">
+
+    <!-- Left tip card -->
+    <div class="bg-gradient-to-r from-[#8ECEFD] to-[#8ECEFD] text-white p-6 rounded-lg">
+
+      <!-- ✅ bold text -->
+      <p class="text-sm font-semibold mb-4">
+        PRO TIPS: It's important to create a custom resume tailored to each job application to increase your chances of success!
+      </p>
+
+      <!-- ✅ button with icon -->
+      <a href="{% url 'resume_optimizer' %}"
+         class="inline-flex items-center gap-2 bg-[#0D99FF] hover:bg-[#0b86e6] px-5 py-2 rounded-full text-sm font-medium">
+
+        <!-- icon -->
+        <img src="{% static 'images/resume_icon.png' %}" class="w-4 h-4" alt="icon">
+
+        Resume Editing Services
+      </a>
+    </div>
+
+    <!-- Right create card -->
+    <a href="/resumes/create/" class="block">
+      <div class="bg-white border border-gray-200 rounded-lg flex flex-col justify-center items-center p-10 cursor-pointer hover:shadow-sm">
+
+        <!-- ✅ plus circle like UI -->
+      
+          <img src="{% static 'images/plusicon.png' %}" class="w-12 h-12" alt="plus">
+      
+
+        <span class="text-sm font-medium text-gray-600">Create New Resume</span>
+      </div>
+    </a>
+
+  </div>
+
+</section>
+
+{% endblock %}

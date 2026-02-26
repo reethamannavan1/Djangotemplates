@@ -1,0 +1,110 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section>
+
+<!-- HEADER -->
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-lg font-semibold">My Resumes</h1>
+
+    <a href="{% url 'create-resume' %}"
+       class="bg-[#0D99FF] text-white px-5 py-2 rounded-full text-sm font-medium">
+        + Create Resume
+    </a>
+</div>
+
+<!-- GRID -->
+<div class="grid md:grid-cols-2 gap-5">
+
+{% for r in resumes %}
+
+<!-- CARD -->
+<div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition flex flex-col">
+
+    <!-- TITLE -->
+    <div class="font-semibold text-md truncate">{{ r.title }}</div>
+
+    <!-- DATE -->
+    <div class="text-xs text-gray-400 mb-2">
+        {{ r.created_at|date:"M d, Y" }}
+    </div>
+
+    <!-- PREVIEW TEXT -->
+    <div class="text-sm text-gray-500 flex-1 line-clamp-3">
+        {{ r.summary|default:"AI generated resume content" }}
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="flex justify-end gap-3 mt-4">
+
+        <!-- Preview placeholder -->
+       <button onclick="openPreview(`{{ r.title|escapejs }}`, `{{ r.summary|escapejs }}\n\n{{ r.experience|escapejs }}\n\n{{ r.education|escapejs }}\n\n{{ r.skills|escapejs }}`)"
+        class="text-blue-500 text-sm flex items-center gap-1">
+    <img src="{% static 'images/eye.png' %}" class="w-4 h-4">
+    Preview
+</button>
+
+        <!-- Delete -->
+        <form method="post" action="{% url 'delete-resume' r.id %}">
+            {% csrf_token %}
+            <button class="text-red-500 text-sm flex items-center gap-1">
+                <img src="{% static 'images/delete.png' %}" class="w-4 h-4">
+                Delete
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<div class="col-span-full text-center py-20 text-gray-400">
+    No resumes yet — create your first AI resume 🚀
+</div>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+
+<!-- PREVIEW MODAL -->
+<div id="previewModal" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+    <div class="bg-white rounded-xl max-w-2xl w-full p-6 relative max-h-[80vh] overflow-y-auto">
+
+        <!-- CLOSE -->
+        <button onclick="closePreview()"
+                class="absolute right-3 top-3 text-gray-400 text-xl">
+            ✕
+        </button>
+
+        <!-- TITLE -->
+        <h2 id="previewTitle" class="text-lg font-semibold mb-3"></h2>
+
+        <!-- CONTENT -->
+        <div id="previewContent"
+             class="text-sm whitespace-pre-wrap text-gray-600"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+function openPreview(title, content){
+    document.getElementById("previewTitle").innerText = title
+    document.getElementById("previewContent").innerText = content
+    document.getElementById("previewModal").classList.remove("hidden")
+}
+
+function closePreview(){
+    document.getElementById("previewModal").classList.add("hidden")
+}
+</script>
+
+{% endblock %}

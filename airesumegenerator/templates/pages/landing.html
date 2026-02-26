@@ -1,0 +1,94 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
+
+  <div>
+    <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">
+      {{ hero.badge_text }}
+    </span>
+
+    <h1 class="heading mt-5">
+      {{ hero.heading }}
+    </h1>
+
+    <p class="mt-4 text-gray-600">
+      {{ hero.subtext }}
+    </p>
+
+    <div class="mt-6 flex gap-3">
+      <button class="bg-[var(--color-primary)] text-white px-5 py-2 rounded">
+        {{ hero.primary_button }}
+      </button>
+
+      <button class="border px-5 py-2 rounded">
+        {{ hero.secondary_button }}
+      </button>
+    </div>
+
+     <div class="mt-6 flex gap-6 text-sm text-gray-700">
+        <div class="flex items-center gap-2">
+            <span class="text-green-500">✔</span>
+            ATS-Friendly
+        </div>
+
+        <div class="flex items-center gap-2">
+            <span class="text-green-500">✔</span>
+            Professional Templates
+        </div>
+    </div>
+  </div>
+
+  <div>
+    <img src="{{ hero.hero_image.url }}" class="w-full">
+  </div>
+
+</section>
+
+
+<!-- TRUSTED SECTION -->
+<section class="bg-gray-50 py-12">
+
+  <div class="max-w-7xl mx-auto px-4">
+
+    <!-- Title -->
+    <p class="text-center text-sm font-semibold text-gray-500 mb-8">
+      TRUSTED BY PROFESSIONALS HIRED AT
+    </p>
+
+    <!-- Logos row -->
+    <div class="flex flex-wrap justify-center items-center gap-10 text-gray-600">
+
+      <div class="flex items-center gap-2">
+        <img src="{% static 'images/dataco.png' %}" class="h-6">
+        <span>DataCo</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <img src="{% static 'images/launchpad.png' %}" class="h-6">
+        <span>Launch Pad</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <img src="{% static 'images/greentech.png' %}" class="h-6">
+        <span>Green Tech</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <img src="{% static 'images/fincorp.png' %}" class="h-6">
+        <span>Fin Corp</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <img src="{% static 'images/networks.png' %}" class="h-6">
+        <span>Networks</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% endblock %}

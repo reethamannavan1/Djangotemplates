@@ -1,0 +1,109 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- TOP BANNER -->
+<div class="bg-[#8ECEFD] text-white p-4 rounded mb-6">
+
+  <p class="text-sm">
+    <b>Webpage to PDF:</b> Convert Webpage to PDG with one click! Copy and paste the webpage URL and click the Convert button.!
+  </p>
+
+  <p class="text-sm mt-1">
+    <b>Webpage to Image:</b> Convert Webpage to JPG with one click! Copy and paste the webpage URL and click the Convert button.!
+  </p>
+
+  <p class="text-sm mt-1">
+    <b>Website Screenshot:</b> Website screenshots with just one click! Copy and paste the URL of the page you want snapshot and click the Convert button.!
+  </p>
+
+</div>
+
+<!-- ⭐ IMPORTANT PART -->
+<div class="grid grid-cols-3 gap-6 w-full">
+
+  <!-- CARD 1 -->
+  <!-- CARD 1 -->
+<div class="border rounded p-5 bg-white">
+
+  <form method="POST" action="{% url 'webpage_pdf' %}">
+    {% csrf_token %}
+
+    <div class="flex gap-3 mb-3">
+      <img src="{% static 'images/file.png' %}" class="w-8">
+      <p class="font-semibold">Webpage to PDF></p>
+    </div>
+
+    <p class="text-sm text-gray-600 mb-4">
+      Convert Webpage to PDG with one click! Copy and paste the webpage URL and click the Convert button.!
+    </p>
+
+    <!-- ⭐ URL FIELD -->
+    <input type="url" name="url" placeholder="Paste webpage URL"
+           class="w-full border px-3 py-2 rounded text-sm mb-3" required>
+
+    <button class="bg-[#0D99FF] text-white px-4 py-1 rounded-full text-sm">
+      Click Here>
+    </button>
+
+  </form>
+
+</div>
+
+  <!-- CARD 2 -->
+ <!-- CARD 2 -->
+<div class="border rounded p-5 bg-white">
+
+  <form method="POST" action="{% url 'webpage_image' %}">
+    {% csrf_token %}
+
+    <div class="flex gap-3 mb-3">
+      <img src="{% static 'images/file.png' %}" class="w-8">
+      <p class="font-semibold">Webpage to Image></p>
+    </div>
+
+    <p class="text-sm text-gray-600 mb-4">
+      Convert Webpage to JPG with one click! Copy and paste the webpage URL and click the Convert button.!
+    </p>
+
+    <input type="url" name="url" placeholder="Paste webpage URL"
+           class="w-full border px-3 py-2 rounded text-sm mb-3" required>
+
+    <button class="bg-[#0D99FF] text-white px-4 py-1 rounded-full text-sm">
+      Click Here>
+    </button>
+
+  </form>
+
+</div>
+
+  <!-- CARD 3 -->
+  <!-- CARD 3 -->
+<div class="border rounded p-5 bg-white">
+
+  <form method="POST" action="{% url 'webpage_screenshot' %}">
+    {% csrf_token %}
+
+    <div class="flex gap-3 mb-3">
+      <img src="{% static 'images/file.png' %}" class="w-8">
+      <p class="font-semibold">Webpage to Screenshot></p>
+    </div>
+
+    <p class="text-sm text-gray-600 mb-4">
+      Website screenshots with just one click! Copy and paste the URL and click Convert.
+    </p>
+
+    <input type="url" name="url" placeholder="Paste webpage URL"
+           class="w-full border px-3 py-2 rounded text-sm mb-3" required>
+
+    <button class="bg-[#0D99FF] text-white px-4 py-1 rounded-full text-sm">
+      Click Here>
+    </button>
+
+  </form>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Dashboard{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+.toast-item{
+    animation: toastIn 0.35s ease forwards, toastOut 0.35s ease forwards 2.6s;
+}
+
+@keyframes toastIn{
+    from{opacity:0; transform: translateY(30px) scale(.95);}
+    to{opacity:1; transform: translateY(0) scale(1);}
+}
+
+@keyframes toastOut{
+    from{opacity:1; transform: translateY(0);}
+    to{opacity:0; transform: translateY(-30px);}
+}
+.nav-active{
+    background: linear-gradient(90deg,#0D99FF,#8ECEFD);
+    color:white;
+}
+</style>
+
+</head>
+
+<body class="bg-white">
+
+<div class="flex min-h-screen">
+
+    <!-- SIDEBAR -->
+    <aside class="w-56 bg-white flex flex-col font-semibold">
+
+        <!-- Logo -->
+        <div class="p-4 border-b flex items-center gap-2">
+            <img src="{% static 'images/resumelogo.png' %}" class="w-6 h-6">
+            <span class="font-semibold text-sm text-[var(--color-primary)]">Resume AI</span>
+        </div>
+
+        <!-- User -->
+        <div class="p-4 border-b flex items-center gap-3">
+            <img src="{% static 'images/sidebar/user.png' %}" class="w-9 h-9 rounded-full">
+
+            <div>
+                <div class="text-sm font-semibold">
+    {{ request.user.email|truncatechars:12 }}
+</div>
+                <span class="text-xs bg-blue-500 text-white px-2 py-0.5 rounded">
+                    {{ request.user.plan.name }}
+                </span>
+            </div>
+        </div>
+
+        <!-- Menu -->
+       <nav class="p-3 text-sm">
+        {% with request.resolver_match.url_name as current %}
+
+
+    <!-- Dashboard ACTIVE -->
+    <a href="{% url 'dashboard' %}"
+   class="flex items-center gap-3 px-3 py-2.5 font-medium border border-black
+   {% if current == 'dashboard' %}nav-active{% else %}bg-white shadow-sm{% endif %}">
+        <img src="{% static 'images/sidebar/dashboard.png' %}" class="w-6 h-6">
+        Dashboard
+    </a>
+
+   <a href="{% url 'resume_home' %}"
+   class="flex items-center gap-3 px-3 py-2.5 border-b border-l border-r border-black
+   {% if current == 'resume_home' %}nav-active{% else %}hover:bg-white{% endif %}">
+        <img src="{% static 'images/sidebar/resume.png' %}" class="w-6 h-6">
+        Resume
+    </a>
+
+<a href="{% url 'cover_letter' %}"
+   class="flex items-center gap-3 px-3 py-2.5 border-b border-l border-r border-black
+   {% if current == 'cover_letter' %}nav-active{% else %}hover:bg-white{% endif %}">
+        <img src="{% static 'images/sidebar/letter.png' %}" class="w-6 h-6">
+        Cover letter
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-3 py-2.5  hover:bg-white transition border-b border-l border-r border-black">
+        <img src="{% static 'images/sidebar/interview.png' %}" class="w-6 h-6">
+        Interview
+    </a>
+
+    <a href="#"
+       class="flex items-center gap-3 px-3 py-2.5  hover:bg-white transition border-b border-l border-r border-black">
+        <img src="{% static 'images/sidebar/website.png' %}" class="w-6 h-6">
+        Website
+    </a>
+
+<a href="{% url 'templates' %}"
+   class="flex items-center gap-3 px-3 py-2.5 border-b border-l border-r border-black
+   {% if current == 'templates' %}nav-active{% else %}hover:bg-white{% endif %}">
+
+    <img src="{% static 'images/sidebar/templates.png' %}" class="w-6 h-6">
+    Templates
+</a>
+
+   <a href="{% url 'job_alert' %}"
+   class="flex items-center gap-3 px-3 py-2.5 border-b border-l border-r border-black
+   {% if current == 'job_alert' %}nav-active{% else %}hover:bg-white{% endif %}">
+        <img src="{% static 'images/sidebar/jobs.png' %}" class="w-6 h-6">
+        Job Alerts
+    </a>
+
+  <a href="{% url 'blog_list' %}"
+   class="flex items-center gap-3 px-3 py-2.5 border-b border-l border-r border-black
+   {% if current == 'blog_list' %}nav-active{% else %}hover:bg-white{% endif %}">
+    <img src="{% static 'images/sidebar/blog.png' %}" class="w-6 h-6">
+    Blog
+</a>
+
+<a href="{% url 'tools' %}"
+   class="flex items-center gap-3 px-3 py-2.5 border-b border-l border-r border-black
+   {% if current == 'tools' %}nav-active{% else %}hover:bg-white{% endif %}">
+        <img src="{% static 'images/sidebar/tools.png' %}" class="w-6 h-6">
+        Tools
+    </a>
+
+ <a href="{% url 'feedback' %}"
+   class="flex items-center gap-3 px-3 py-2.5 border-b border-l border-r border-black
+   {% if current == 'feedback' %}nav-active{% else %}hover:bg-white{% endif %}">
+        <img src="{% static 'images/sidebar/feedback.png' %}" class="w-6 h-6">
+        Feedback
+    </a>
+{% endwith %}
+
+</nav>
+    </aside>
+
+
+    <!-- MAIN -->
+    <div class="flex-1 flex flex-col">
+
+        <!-- HEADER -->
+        <header class="bg-white border-b px-6 py-3 flex justify-between items-center">
+
+            <div class="text-sm font-medium text-gray-500">
+                Resume AI • Search
+            </div>
+
+            <div class="relative">
+
+                <button onclick="toggleUserMenu()" class="flex items-center gap-2">
+                    <span class="text-sm">{{ request.user.email|truncatechars:15 }}</span>
+                    <div class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs font-semibold">
+    {{ request.user.email|slice:":1"|upper }}
+</div>
+                </button>
+
+                <div id="userMenu" class="hidden absolute right-0 mt-2 w-44 bg-white border rounded shadow text-sm z-50">
+
+                    <a href="{% url 'dashboard' %}" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                    <a href="{% url 'pricing' %}" class="block px-4 py-2 hover:bg-gray-100">Pricing</a>
+                    <a href="/" class="block px-4 py-2 hover:bg-gray-100">Homepage</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+                    <a href="{% url 'logout' %}" class="block px-4 py-2 hover:bg-gray-100 text-red-500">Logout</a>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <main class="p-6 flex-1">
+  {% include "base/partials/toast.html" %}
+
+
+            {% block content %}{% endblock %}
+        </main>
+
+    </div>
+
+</div>
+
+<script>
+function toggleUserMenu(){
+    document.getElementById("userMenu").classList.toggle("hidden")
+}
+</script>
+
+
+
+ {% include "base/partials/footer.html" %}
+</body>
+</html>

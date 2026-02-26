@@ -1,0 +1,95 @@
+{% load static %}
+
+<nav class="bg-white border-b">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+
+    <!-- LEFT (logo) -->
+    <div class="flex items-center gap-2">
+        <img src="{% static 'images/resumelogo.png' %}" class="w-8 h-8 object-contain">
+        <span class="font-semibold text-lg text-[var(--color-primary)]">Resume AI</span>
+    </div>
+
+    <!-- CENTER (desktop menu) -->
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="/" class="hover:text-[var(--color-primary)]">Home</a>
+        <a href="#" class="hover:text-[var(--color-primary)]">Features</a>
+        <a href="#" class="hover:text-[var(--color-primary)]">Templates</a>
+        <a href="{% url 'pricing' %}" class="hover:text-[var(--color-primary)]">Pricing</a>
+    </div>
+
+    <!-- RIGHT -->
+   <!-- RIGHT -->
+<div class="hidden md:flex items-center gap-4">
+
+ {% if request.user.is_authenticated %}
+
+<!-- CLICK AREA -->
+<button onclick="toggleUserDropdown()" class="flex items-center gap-2">
+
+    <span class="text-sm text-gray-600">{{ request.user.email }}</span>
+
+    {% if request.user.plan %}
+        <span class="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-600">
+            {{ request.user.plan.name }}
+        </span>
+    {% endif %}
+
+</button>
+
+<!-- DROPDOWN -->
+<div id="userDropdown"
+     class="hidden absolute right-0 mt-28 w-44 bg-white border rounded shadow text-sm">
+
+    <!-- ⭐ DASHBOARD HERE ⭐ -->
+    <a href="{% url 'dashboard' %}" class="block px-4 py-2 hover:bg-gray-100">
+        Dashboard
+    </a>
+
+    <!-- ⭐ LOGOUT HERE ⭐ -->
+    <a href="{% url 'logout' %}" class="block px-4 py-2 hover:bg-gray-100 text-red-500">
+        Logout
+    </a>
+
+</div>
+
+{% else %}
+
+        <!-- Guest -->
+        <a href="{% url 'login' %}" class="text-sm">Login</a>
+
+        <a href="{% url 'signup' %}"
+           class="flex items-center justify-center bg-[var(--color-primary)] text-white text-sm font-medium px-5 h-10 rounded-md">
+           Get Started
+        </a>
+
+    {% endif %}
+
+</div>
+
+    <!-- MOBILE HAMBURGER -->
+    <button class="md:hidden text-xl" onclick="toggleMenu()">☰</button>
+
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="hidden md:hidden px-4 pb-4 space-y-2 text-sm">
+      <a class="block">Home</a>
+      <a class="block">Features</a>
+      <a class="block">Templates</a>
+      <a href="{% url 'pricing' %}" class="hover:text-[var(--color-primary)]">Pricing</a>
+      <a class="block">Login</a>
+      <a class="block bg-[var(--color-primary)] text-white px-3 py-2 rounded">Get Started</a>
+  </div>
+</nav>
+
+<script>
+function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("hidden")
+}
+</script>
+
+<script>
+function toggleUserDropdown(){
+    document.getElementById("userDropdown").classList.toggle("hidden")
+}
+</script>

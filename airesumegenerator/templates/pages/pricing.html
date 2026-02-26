@@ -1,0 +1,252 @@
+{% extends "base/base.html" %}
+{% block title %}Pricing · Resume AI{% endblock %}
+
+{% block content %}
+
+<section class="py-20 bg-[#f5f5f5]">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+
+
+<!-- Heading -->
+<h1 class="heading mb-2">Simple Pricing for your Next Career Move</h1>
+<p class="text text-gray-500 mb-6">
+  Generate unlimited resumes and cover letters with our AI. Start for free, upgrade when you're ready.
+</p>
+
+<!-- Toggle -->
+<div class="inline-flex bg-gray-200 rounded-full p-1 mb-12">
+  <button class="px-6 py-2 rounded-full text-sm font-medium">Monthly</button>
+  <button class="px-6 py-2 rounded-full text-sm font-medium bg-white shadow">Yearly</button>
+</div>
+
+<!-- Cards -->
+<div class="grid md:grid-cols-3 gap-8">
+
+  {% for plan in plans %}
+
+  <div class="bg-white border rounded-xl p-8 relative flex flex-col
+    {% if plan.name == 'Pro' %}border-blue-400 shadow-lg{% else %}border-gray-300{% endif %}">
+
+    <!-- Popular badge -->
+    {% if plan.name == 'Pro' %}
+    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white text-xs px-3 py-1 rounded-full">
+      Most Popular
+    </span>
+    {% endif %}
+
+    <!-- Pending downgrade badge -->
+{% if pending_plan and pending_plan.id == plan.id %}
+<span class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-white text-xs px-3 py-1 rounded-full">
+  Scheduled
+</span>
+{% endif %}
+
+    <!-- Title -->
+    <h3 class="text-2xl font-semibold text-blue-500 mb-1">{{ plan.name }}</h3>
+
+    <!-- Description -->
+    <p class="text-sm text-gray-500 mb-4">
+      {% if plan.name == "Starter" %}Perfect for trying out our resume builder.{% endif %}
+      {% if plan.name == "Pro" %}Everything you need to land the job.{% endif %}
+      {% if plan.name == "Team" %}For agencies and recruitment teams.{% endif %}
+    </p>
+
+    <!-- Price -->
+    <div class="text-3xl font-bold mb-6 text-blue-500">
+      ₹{{ plan.price }}<span class="text-sm text-gray-500">/month</span>
+    </div>
+
+    <!-- Features -->
+    <ul class="space-y-4 text-sm text-left mb-8">
+
+  {% if plan.name == "Starter" %}
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      1 Resume Build
+    </li>
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      Basic AI Suggestions
+    </li>
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      PDF Export (Watermarked)
+    </li>
+
+    <li class="flex items-center gap-3 text-gray-400">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-gray-200 text-xs">✕</span>
+      Cover Letter Generator
+    </li>
+
+    <li class="flex items-center gap-3 text-gray-400">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-gray-200 text-xs">✕</span>
+      ATS Optimization Checker
+    </li>
+
+  {% elif plan.name == "Pro" %}
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      Unlimited Resumes
+    </li>
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      Advanced AI Writing Assistant
+    </li>
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      PDF Export (Watermarked)
+    </li>
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      Cover Letter Generator
+    </li>
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      ATS Optimization Checker
+    </li>
+
+  {% elif plan.name == "Team" %}
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      All Pro Features
+    </li>
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      Team Collaboration Workspace
+    </li>
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      Admin Dashboard
+    </li>
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      Custom Branding
+    </li>
+
+    <li class="flex items-center gap-3">
+      <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 text-white text-xs">✓</span>
+      Priority Support
+    </li>
+
+  {% endif %}
+
+</ul>
+
+   <!-- CTA -->
+<div class="mt-auto">
+
+  {% if not request.user.is_authenticated %}
+
+    {% if plan.name == "Starter" %}
+      <a href="{% url 'signup' %}" class="block text-center bg-blue-500 text-white py-3 rounded-full">
+        Start for free
+      </a>
+
+    {% elif plan.name == "Pro" %}
+      <a href="{% url 'signup' %}" class="block text-center bg-blue-500 text-white py-3 rounded-full">
+        Upgrade to Pro
+      </a>
+
+    {% elif plan.name == "Team" %}
+      <a href="#" class="block text-center bg-blue-500 text-white py-3 rounded-full">
+        Contact Sale
+      </a>
+    {% endif %}
+
+  {% else %}
+
+    {% if user_plan.id == plan.id %}
+      <button class="w-full bg-gray-300 py-3 rounded-full cursor-not-allowed">
+        Current Plan
+      </button>
+
+    {% elif plan.price > user_plan.price %}
+
+      {% if plan.name == "Team" %}
+        <button class="w-full bg-blue-500 text-white py-3 rounded-full">
+          Contact Sale
+        </button>
+
+      {% else %}
+        <!-- UPGRADE FORM -->
+      <button onclick="startPayment({{ plan.id }})"
+        class="w-full bg-blue-500 text-white py-3 rounded-full">
+  Upgrade to {{ plan.name }}
+</button>
+      {% endif %}
+
+    {% else %}
+      <!-- DOWNGRADE FORM -->
+      <form method="post" action="{% url 'change_plan' plan.id %}">
+        {% csrf_token %}
+        <button type="submit" class="w-full bg-gray-400 text-white py-3 rounded-full">
+          Downgrade
+        </button>
+      </form>
+    {% endif %}
+
+  {% endif %}
+
+</div>
+
+  </div>
+
+  {% endfor %}
+
+</div>
+
+<!-- Compare link -->
+<div class="mt-10 text-sm font-medium text-gray-600 cursor-pointer">
+  Compare all Features >
+</div>
+
+
+  </div>
+</section>
+
+
+
+<script>
+function startPayment(planId) {
+
+  fetch(`/accounts/create-order/${planId}/`)
+    .then(res => res.json())
+    .then(data => {
+
+      var options = {
+        "key": data.key,
+        "amount": data.amount,
+        "currency": "INR",
+        "name": "Resume AI",
+        "description": "Upgrade to " + data.plan_name,
+        "order_id": data.order_id,
+
+        handler: function (response) {
+          window.location.href = `/accounts/payment-success/${planId}/?payment_id=` + response.razorpay_payment_id;
+        },
+
+        theme: {
+          color: "#0D99FF"
+        }
+      };
+
+      var rzp = new Razorpay(options);
+      rzp.open();
+
+    });
+}
+</script>
+
+{% endblock %}

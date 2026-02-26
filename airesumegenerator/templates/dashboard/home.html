@@ -1,0 +1,202 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- Quick tiles -->
+<div class="grid grid-cols-5 gap-4 mb-6">
+
+    <!-- Tile -->
+    <div class="relative rounded-lg overflow-hidden cursor-pointer group aspect-square">
+       
+
+        <!-- overlay -->
+        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition"></div>
+
+        <!-- content -->
+         <a href="{% url 'create-resume' %}">
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+            <div class="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center mb-2">
+                <span class="text-xl">＋</span>
+            </div>
+            <p class="text-xl font-bold">New Resume</p>
+        </div>
+        </a>
+    </div>
+
+    <!-- Tile -->
+       <a href="{% url 'cover_letter' %}">
+    <div class="relative rounded-lg overflow-hidden cursor-pointer group aspect-square">
+       
+        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+            <div class="w-12 h-12 rounded-full border-2 border-white flex items-center justify-center mb-2">
+                <span class="text-xl">＋</span>
+            </div>
+            <p class="text-xl font-bold">New Letter</p>
+        </div>
+    </div>
+    </a>
+
+    <!-- My Resume -->
+<a href="{% url 'resume-list' %}">
+    <div class="relative rounded-lg overflow-hidden cursor-pointer group aspect-square">
+        <img src="{% static 'images/image3.jfif' %}" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+            <img src="{% static 'images/qtileicon1.png' %}" class="w-10 mb-2">
+            <p class="text-xl font-bold">My Resume</p>
+        </div>
+    </div>
+    </a>
+
+    <!-- My Letter -->
+     <a href="{% url 'cover_letter' %}">
+    <div class="relative rounded-lg overflow-hidden cursor-pointer group aspect-square">
+        <img src="{% static 'images/image4.jfif' %}" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+            <img src="{% static 'images/qtileicon2.png' %}" class="w-10 mb-2">
+            <p class="text-xl font-bold">My Letter</p>
+        </div>
+    </div>
+    </a>
+
+    <!-- Templates -->
+     <a href="{% url 'templates' %}">
+    <div class="relative rounded-lg overflow-hidden cursor-pointer group aspect-square">
+        <img src="{% static 'images/image5.jfif' %}" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white">
+            <img src="{% static 'images/qtileicon3.png' %}" class="w-10 mb-2">
+            <p class="text-xl font-bold">Templates</p>
+        </div>
+    </div>
+    </a>
+
+</div>
+
+{% include "dashboard/components/ai_card.html" %}
+{% include "dashboard/components/resume_section.html" %}
+
+
+<!-- LETTER SECTION -->
+<div class="mb-8">
+
+    <!-- section title -->
+    <h3 class="text-gray-700 font-semibold mb-3">Letter</h3>
+
+    <!-- banner -->
+    <div class="bg-gradient-to-r from-[#8ECEFD] to-[#7fc8fb] text-white rounded-lg p-4 flex justify-between items-center mb-4">
+        <div>
+            <p class="font-semibold">Create Your Letter in 5 min</p>
+            <p class="text-xs opacity-90">Choose between simple, basic, professional or Creative Free Letter Templates</p>
+        </div>
+
+        <div class="w-8 h-8 rounded-full border border-white flex items-center justify-center">
+            →
+        </div>
+    </div>
+
+    <!-- cards -->
+    <div class="grid grid-cols-2 gap-4">
+
+        <!-- left tip card -->
+        <div class="bg-gradient-to-r from-[#8ECEFD] to-[#7fc8fb] to-blue-300 text-white rounded-lg p-4">
+            <p class="text-sm font-semibold mb-3">
+                PRO TIPS: It's important to create a custom letter tailored to each job application to increase your chances of success!
+            </p>
+
+<div class="bg-gradient-to-r from-[#8ECEFD] to-[#7fc8fb] text-white rounded-lg p-4">
+
+    
+
+    <!-- NAVIGATION BUTTON -->
+    <a href="{% url 'cover_letter' %}"
+       class="inline-flex items-center gap-2 bg-[#0D99FF] hover:bg-[#0b86e6] text-white text-sm px-4 py-2 rounded-full">
+
+        <!-- ICON -->
+        <img src="{% static 'images/resume_icon.png' %}" class="w-4 h-4" alt="letter icon">
+
+        Letter Editing Services
+    </a>
+
+</div>
+
+
+        </div>
+
+        <!-- right create card -->
+        <div class="bg-white border rounded-lg p-6 flex items-center justify-center gap-3 cursor-pointer hover:shadow">
+            <div class="w-10 h-10 rounded-full border-2 border-gray-500 flex items-center justify-center text-xl">
+                +
+            </div>
+            <p class="font-semibold text-gray-600">Create New Letter</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- WEBSITE SECTION -->
+<div class="mb-8">
+
+    <h3 class="text-gray-700 font-semibold mb-3">Website</h3>
+
+    <!-- banner -->
+    <div class="bg-gradient-to-r from-[#8ECEFD] to-[#7fc8fb] text-white rounded-lg p-4 flex justify-between items-center mb-4">
+        <div>
+            <p class="font-semibold">Create Your Website in 5 min</p>
+            <p class="text-xs opacity-90">Choose between simple, basic, professional or Creative Free Website Templates</p>
+        </div>
+
+        <div class="w-8 h-8 rounded-full border border-white flex items-center justify-center">
+            →
+        </div>
+    </div>
+
+    <!-- cards -->
+    <div class="grid grid-cols-2 gap-4">
+
+        <!-- tip -->
+        <div class="bg-gradient-to-r from-[#8ECEFD] to-[#7fc8fb] text-white rounded-lg p-4">
+            <p class="text-sm font-semibold mb-3">
+                PRO TIPS: Transform your resume into a mobile-friendly website that you can share with recruiters!
+            </p>
+        </div>
+
+        <!-- create -->
+        <div class="bg-white border rounded-lg p-6 flex items-center justify-center gap-3 cursor-pointer hover:shadow">
+           
+            <p class="font-semibold text-gray-600">Create New Website</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function askAI(){
+  console.log("clicked");
+
+  const prompt = document.getElementById("aiPrompt").value;
+
+  fetch("/ai-assistant/",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({prompt})
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    document.getElementById("aiResponseWrap").classList.remove("hidden");
+    document.getElementById("aiResponse").innerText = data.response;
+  });
+}
+</script>
+
+
+{% endblock %}
