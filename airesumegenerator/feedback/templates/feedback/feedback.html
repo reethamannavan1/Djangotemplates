@@ -1,0 +1,49 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="max-w-5xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-6">
+        <img src="{% static 'images/sidebar/feedback.png' %}" class="w-10 mx-auto mb-2">
+       
+        <p class="text-sm text-gray-700">
+            Should you have face any issue or have any suggestions for us,
+            feel free to contact us, we will get back to you as soon as we can!
+        </p>
+    </div>
+
+    <h3 class="font-semibold mb-2">Positive feedback</h3>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Subject -->
+        <label class="text-sm text-blue-500">Subject</label>
+        <input name="subject" required class="w-full border px-3 py-2 mb-4">
+
+        <!-- Message -->
+        <label class="text-sm text-blue-500">Message</label>
+
+        <div class="border border-b-0 p-2 flex gap-3">
+            <img src="{% static 'images/feedback1.png' %}" class="w-4">
+            <img src="{% static 'images/feedback2.png' %}" class="w-4">
+            <img src="{% static 'images/feedback3.png' %}" class="w-22">
+        </div>
+
+        <textarea name="message" required placeholder="Compose message"
+                  class="w-full border px-3 py-3 h-32"></textarea>
+
+        <div class="flex justify-end mt-4">
+            <button class="bg-blue-500 text-white px-5 py-2 rounded-full">
+                Send Message
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
